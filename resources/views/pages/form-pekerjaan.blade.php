@@ -5,7 +5,8 @@
 <div class="container-fluid">
     
     <!-- Page Heading -->
-    
+    <form action="{{ route('form-pekerjaan.store') }}" method="POST">
+        @csrf
     <div class="container">
         <h4 class="text-center mb-4 text-gray-800">LAPORAN PENYELESAIAN PEKERJAAN INSTALASI PASANG SAMBUNG BARU/MIGRASI</h4>
         <div class="row">
@@ -15,12 +16,13 @@
                         <div class="form-group">
                             <label for="sto">STO</label>
                             <select name="sto" class="form-control form-control-sm" id="sto">
-                                <option>CPD</option>
-                                <option>CKL</option>
-                                <option>LGK</option>
-                                <option>PPG</option>
-                                <option>CUG</option>
-                                <option>PKU</option>
+                               <option>Silahkan Pilih</option>
+                                <option value="CPD">CPD</option>
+                                <option value="CKL">CKL</option>
+                                <option value="LGK">LGK</option>
+                                <option value="PPG">PPG</option>
+                                <option value="CUG">CUG</option>
+                                <option value="PKU">PKU</option>
                             </select>
                         </div>
                         
@@ -114,15 +116,15 @@
                         <div class="form-group">
                             <label for="" class="d-block">Lampu Indikator ONT Nyala</label>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="indikator_ont_power" type="checkbox" id="indikator_ont_power" value="power">
+                                <input class="form-check-input" name="indikator_ont_power" type="checkbox" id="indikator_ont_power" value="true">
                                 <label class="form-check-label" for="indikator_ont_power">Power</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="indikator_ont_dsl" type="checkbox" id="indikator_ont_dsl" value="dsl">
+                                <input class="form-check-input" name="indikator_ont_dsl" type="checkbox" id="indikator_ont_dsl" value="true">
                                 <label class="form-check-label" for="indikator_ont_dsl">DSL</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="indikator_ont_internet" id="indikator_ont_internet" value="internet">
+                                <input class="form-check-input" type="checkbox" name="indikator_ont_internet" id="indikator_ont_internet" value="true">
                                 <label class="form-check-label" for="indikator_ont_internet">Internet</label>
                             </div>
                         </div>
@@ -176,21 +178,23 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <h5 class="text-center mb-4">PSB</h5>
-                        
+                        <div class="row justify-content-end pr-4">
+                            <button type="button" class="btn btn-sm btn-secondary px-1 py-1 mb-3" id="btnUncheckPsb">Uncheck</button>
+                        </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="psb" id="exampleRadios1" value="1P">
+                            <input class="form-check-input psb" type="radio" name="psb" id="exampleRadios1" value="1P [Voice] / 1P [Internet]">
                             <label class="form-check-label" for="exampleRadios1">
                                 1P [Voice] / 1P [Internet]
                             </label>
                         </div>
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" name="psb" id="exampleRadios2" value="2P">
+                            <input class="form-check-input psb" type="radio" name="psb" id="exampleRadios2" value="2P">
                             <label class="form-check-label" for="exampleRadios2">
                                 2P [Voice + Internet]
                             </label>
                         </div>
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" name="psb" id="exampleRadios2" value="3P">
+                            <input class="form-check-input psb" type="radio" name="psb" id="exampleRadios2" value="3P">
                             <label class="form-check-label" for="exampleRadios2">
                                 3P
                             </label>
@@ -203,23 +207,26 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <h5 class="text-center mb-4">Tambahan</h5>
+                        <div class="row justify-content-end pr-4">
+                            <button type="button" class="btn btn-sm btn-secondary px-1 py-1 mb-3" id="btnUncheckTambahan">Uncheck</button>
+                        </div>
                         
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tambahan" id="changeSTB" value="change stb">
+                                    <input class="form-check-input tambahan" type="radio" name="tambahan" id="changeSTB" value="change stb">
                                     <label class="form-check-label" for="changeSTB">
                                         Change STB
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="tambahan" id="plc" value="plc">
+                                    <input class="form-check-input tambahan" type="radio" name="tambahan" id="plc" value="plc">
                                     <label class="form-check-label" for="plc">
                                         PLC
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="tambahan" id="indibox" value="indibox">
+                                    <input class="form-check-input tambahan" type="radio" name="tambahan" id="indibox" value="indibox">
                                     <label class="form-check-label" for="indibox">
                                         IndiBox
                                     </label>
@@ -228,13 +235,13 @@
                             
                             <div class="col-6">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tambahan" id="stbTambahan" value="stb tambahan">
+                                    <input class="form-check-input tambahan" type="radio" name="tambahan" id="stbTambahan" value="stb tambahan">
                                     <label class="form-check-label" for="stbTambahan">
                                         STB Tambahan
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="tambahan" id="wifiExtender" value="wifi extender">
+                                    <input class="form-check-input tambahan" type="radio" name="tambahan" id="wifiExtender" value="wifi extender">
                                     <label class="form-check-label" for="wifiExtender">
                                         Wifi Extender
                                     </label>
@@ -252,6 +259,9 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <h5 class="text-center mb-4">Migrasi</h5>
+                        <div class="row justify-content-end pr-4">
+                            <button type="button" class="btn btn-sm btn-secondary px-1 py-1 mb-3" id="btnUncheckMigrasi">Uncheck</button>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <p>Infrastruktur :</p>
@@ -260,25 +270,25 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-1P[Voice]">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-1P[Voice]">
                                     <label class="form-check-label" for="exampleRadios1">
                                         1P-1P [Voice]
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-1P[Internet]">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-1P[Internet]">
                                     <label class="form-check-label" for="exampleRadios1">
                                         1P-1P [Internet]
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-2P[Voice + Internet]">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-2P[Voice + Internet]">
                                     <label class="form-check-label" for="exampleRadios1">
                                         1P-2P [Voice + Internet]
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-2P{Internet + Usee Tv}">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-2P[Internet + Usee Tv]">
                                     <label class="form-check-label" for="exampleRadios1">
                                         1P-2P [Internet + Usee Tv]
                                     </label>
@@ -286,25 +296,25 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 2P-2P[Internet + Voice]">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 2P-2P[Internet + Voice]">
                                     <label class="form-check-label" for="exampleRadios1">
                                         2P-2P [Internet + Voice]
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 2P-2P[Internet + Usee Tv]">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 2P-2P[Internet + Usee Tv]">
                                     <label class="form-check-label" for="exampleRadios1">
                                         2P-2P [Internet + Usee Tv]
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-3P">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 1P-3P">
                                     <label class="form-check-label" for="exampleRadios1">
                                         1P-3P
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 2P-3P">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 2P-3P">
                                     <label class="form-check-label" for="exampleRadios1">
                                         2P-3P
                                     </label>
@@ -312,7 +322,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 3P-3P">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Infrastruktur 3P-3P">
                                     <label class="form-check-label" for="exampleRadios1">
                                         3P-3P
                                     </label>
@@ -327,13 +337,13 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Layanan 1P-2P[Voice + Internet]">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Layanan 1P-2P[Voice + Internet]">
                                     <label class="form-check-label" for="exampleRadios1">
                                         1P-2P [Voice + Internet]
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Layanan 1P-2P[Internet + Usee Tv]">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Layanan 1P-2P[Internet + Usee Tv]">
                                     <label class="form-check-label" for="exampleRadios1">
                                         1P-2P [Internet + Usee Tv]
                                     </label>
@@ -341,13 +351,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Layanan 1P-3P">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Layanan 1P-3P">
                                     <label class="form-check-label" for="exampleRadios1">
                                         1P-3P
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" name="migrasi" id="exampleRadios1" value="Layanan 2P-3P">
+                                    <input class="form-check-input migrasi" type="radio" name="migrasi" id="exampleRadios1" value="Layanan 2P-3P">
                                     <label class="form-check-label" for="exampleRadios1">
                                         2P-3P
                                     </label>
@@ -429,8 +439,60 @@
         </div>
 
         <div class="row justify-content-center my-5">
-            <button class="btn px-5 py-2 btn-primary btn-lg">Kirim</button>
+            <button type="submit" class="btn px-5 py-2 btn-primary btn-lg">Kirim</button>
+            
         </div>
     </div>
+    </form>
 </div>
 @endsection
+
+@push('addon-script')
+    <script>
+    $(document).ready(function(){
+            
+    $(".tambahan").on('click',checkStatus);
+    $(".migrasi").on('click',checkStatus);
+    $(".psb").on('click',checkStatus);
+
+    function checkStatus(){      
+        if($('.tambahan').is(':checked')){
+            $('.migrasi').prop('disabled', true)
+            $('.psb').prop('disabled', true)
+        }   
+
+        if($('.migrasi').is(':checked')){
+            $('.tambahan').prop('disabled', true)
+            $('.psb').prop('disabled', true)
+        }  
+
+         if($('.psb').is(':checked')){
+            $('.tambahan').prop('disabled', true)
+            $('.migrasi').prop('disabled', true)
+        } 
+    }
+
+    
+    $('#btnUncheckTambahan').on('click', function(){
+        $('.tambahan').prop('checked', false)
+        $('.migrasi').prop('disabled', false)
+        $('.psb').prop('disabled', false)
+    })
+    
+    $('#btnUncheckMigrasi').on('click', function(){
+        $('.migrasi').prop('checked', false)
+        $('.tambahan').prop('disabled', false)
+        $('.psb').prop('disabled', false)
+    })
+    
+    $('#btnUncheckPsb').on('click', function(){
+        $('.psb').prop('checked', false)
+        $('.migrasi').prop('disabled', false)
+        $('.tambahan').prop('disabled', false)
+    })
+   
+    
+        
+    })
+    </script>
+@endpush

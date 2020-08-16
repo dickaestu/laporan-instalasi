@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/form-pekerjaan', 'FormPekerjaanController@index');
+Route::resource('/form-pekerjaan', 'FormPekerjaanController')->middleware('auth');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
