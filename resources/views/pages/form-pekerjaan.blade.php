@@ -5,7 +5,7 @@
 <div class="container-fluid">
     
     <!-- Page Heading -->
-    <form action="{{ route('form-pekerjaan.store') }}" method="POST">
+    <form action="{{ route('create') }}" method="POST">
         @csrf
     <div class="container">
         <h4 class="text-center mb-4 text-gray-800">LAPORAN PENYELESAIAN PEKERJAAN INSTALASI PASANG SAMBUNG BARU/MIGRASI</h4>

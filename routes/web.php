@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/form-pekerjaan', 'FormPekerjaanController')->middleware('auth');
+Route::resource('/', 'FormPekerjaanController')->middleware('auth');
+
+Route::get('/admin', 'AdminController@index')->name('kelola-teknisi');
 
 Auth::routes();

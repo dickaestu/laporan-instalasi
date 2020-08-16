@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormPekerjaanRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FormPekerjaanController extends Controller
 {
@@ -13,7 +15,11 @@ class FormPekerjaanController extends Controller
      */
     public function index()
     {
-        return view('pages.form-pekerjaan');
+        if (Auth::user()->roles == "TEKNISI") {
+            return view('pages.form-pekerjaan');
+        } else {
+            return redirect()->route('kelola-teknisi');
+        }
     }
 
     /**
@@ -32,7 +38,7 @@ class FormPekerjaanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormPekerjaanRequest $request)
     {
         dd($request->all());
     }
