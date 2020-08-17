@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FormPekerjaan;
 use App\Http\Requests\FormPekerjaanRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,10 @@ class FormPekerjaanController extends Controller
      */
     public function store(FormPekerjaanRequest $request)
     {
-        dd($request->all());
+        $item = $request->all();
+        FormPekerjaan::create($item);
+
+        return redirect()->route('index')->with('success', 'Data Berhasil Dibuat');
     }
 
     /**
