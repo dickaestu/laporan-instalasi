@@ -41,7 +41,10 @@ class FormPekerjaanController extends Controller
      */
     public function store(FormPekerjaanRequest $request)
     {
+
+
         $item = $request->all();
+        // dd($item);
         FormPekerjaan::create($item);
 
         return redirect()->route('index')->with('success', 'Data Berhasil Dibuat');

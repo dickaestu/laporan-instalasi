@@ -22,7 +22,7 @@ class CreateLaporanInstalasiTable extends Migration
             $table->string('nama_pelanggan');
             $table->date('tanggal_wo');
             $table->text('alamat');
-            $table->string('rl_msan_doc');
+            $table->string('rk_msan_odc');
             $table->string('dp_odp');
             $table->string('klem');
             $table->string('kec');
@@ -38,9 +38,9 @@ class CreateLaporanInstalasiTable extends Migration
             $table->string('nama_anggota_2');
             $table->string('stb_tambahan');
             $table->string('sn_ont');
-            $table->string('sn_plc');
-            $table->string('sn_wifi_ext');
-            $table->string('mac_address_stb');
+            $table->string('sn_plc')->nullable();
+            $table->string('sn_wifi_ext')->nullable();
+            $table->string('mac_address_stb')->nullable();
             $table->enum('psb', ['PSB 1P [Voice] / 1P [Internet]', 'PSB 2P [Voice + Internet]', 'PSB 3P'])->nullable();
             $table->enum('tambahan', ['change stb', 'plc', 'indibox', 'stb tambahan', 'wifi extender'])->nullable();
             $table->enum('migrasi', [

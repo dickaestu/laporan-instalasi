@@ -50,9 +50,9 @@ class FormPekerjaanRequest extends FormRequest
             'sn_plc' => 'nullable|string',
             'sn_wifi_ext' => 'nullable|string',
             'mac_address_stb' => 'nullable|string',
-            'psb' => 'nullable',
-            'tambahan' => 'nullable',
-            'migrasi' => 'nullable',
+            'psb' => 'nullable|required_without_all:tambahan,migrasi',
+            'tambahan' => 'nullable|required_without_all:psb,migrasi',
+            'migrasi' => 'nullable|required_without_all:psb,tambahan',
             'speed' => 'required|in:10 MB,20 MB,30 MB,40 MB,50 MB,100 MB,200 MB,300 MB,Other',
         ];
     }

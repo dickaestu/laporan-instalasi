@@ -3,7 +3,21 @@
 
 @section('content')
 <div class="container-fluid">
+    @if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{session('success')}}
+    </div>    
+    @endif
     
+    @if ($errors->any())
+    <div class="alert alert-danger mt-2">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div><br />
+    @endif
     <!-- Page Heading -->
     <form action="{{ route('store') }}" method="POST">
         @csrf
@@ -131,23 +145,23 @@
                             <div class="form-group">
                                 <label for="" class="d-block">Lampu Indikator ONT Nyala</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="indikator_ont_power" type="checkbox" id="indikator_ont_power" value="true">
+                                    <input class="form-check-input" name="indikator_ont_power" type="checkbox" id="indikator_ont_power" value="1">
                                     <label class="form-check-label" for="indikator_ont_power">Power</label>
                                     
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="indikator_ont_dsl" type="checkbox" id="indikator_ont_dsl" value="true">
+                                    <input class="form-check-input" name="indikator_ont_dsl" type="checkbox" id="indikator_ont_dsl" value="1">
                                     <label class="form-check-label" for="indikator_ont_dsl">DSL</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="indikator_ont_internet" id="indikator_ont_internet" value="true">
+                                    <input class="form-check-input" type="checkbox" name="indikator_ont_internet" id="indikator_ont_internet" value="1">
                                     <label class="form-check-label" for="indikator_ont_internet">Internet</label>
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="nama_teknisi">Nama Teknisi</label>
-                                <input type="text" class="form-control form-control-sm @error('nama_teknisi') is-invalid @enderror" id="nama_teknisi" name="nama_teknisi" value="{{ old('nama_teknisi') }}">
+                                <input type="text" class="form-control form-control-sm @error('nama_teknisi') is-invalid @enderror" id="nama_teknisi" name="nama_teknisi" value="{{ Auth::user()->name }}" readonly>
                                 @error('nama_teknisi') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
@@ -196,8 +210,10 @@
                     </div>
                 </div>
             </div>
+            @error('psb') <div class="invalid-feedback d-block">{{ $message }}</div>@enderror
             
             <div class="row">
+                
                 <div class="col-lg-6">
                     <div class="card shadow mb-4">
                         <div class="card-body">
@@ -474,7 +490,7 @@
 
 @push('addon-script')
 <script>
-
+    
     $(document).ready(function(){
         $(".tambahan").on('click',checkStatus);
         $(".migrasi").on('click',checkStatus);
