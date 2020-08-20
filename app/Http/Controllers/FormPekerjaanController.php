@@ -17,7 +17,9 @@ class FormPekerjaanController extends Controller
     public function index()
     {
         if (Auth::user()->roles == "TEKNISI") {
-            return view('pages.form-pekerjaan');
+            $items = FormPekerjaan::where('nama_teknisi', Auth::user()->name)->get();
+
+            return view('pages.form-pekerjaan.index', compact('items'));
         } else {
             return redirect()->route('kelola-teknisi');
         }
@@ -30,7 +32,11 @@ class FormPekerjaanController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::user()->roles == "TEKNISI") {
+            return view('pages.form-pekerjaan.create');
+        } else {
+            return redirect()->route('kelola-teknisi');
+        }
     }
 
     /**
@@ -41,13 +47,14 @@ class FormPekerjaanController extends Controller
      */
     public function store(FormPekerjaanRequest $request)
     {
+        if (Auth::user()->roles == "TEKNISI") {
+            $item = $request->all();
+            FormPekerjaan::create($item);
 
-
-        $item = $request->all();
-        // dd($item);
-        FormPekerjaan::create($item);
-
-        return redirect()->route('index')->with('success', 'Data Berhasil Dibuat');
+            return redirect()->route('index')->with('success', 'Data Berhasil Dibuat');
+        } else {
+            return redirect()->route('kelola-teknisi');
+        }
     }
 
     /**
@@ -69,7 +76,13 @@ class FormPekerjaanController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        if (Auth::user()->roles == "TEKNISI") {
+            $item = FormPekerjaan::findOrFail($id);
+            return view('pages.form-pekerjaan.edit', compact('item'));
+        } else {
+            return redirect()->route('kelola-teknisi');
+        }
     }
 
     /**
@@ -79,9 +92,24 @@ class FormPekerjaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormPekerjaanRequest $request, $id)
     {
-        //
+        if (Auth::user()->roles == "TEKNISI") {
+            $data = $request->all();
+            $data['tambahan'] = $request->tambahan;
+            $data['psb'] = $request->psb;
+            $data['migrasi'] = $request->migrasi;
+            $data['indikator_ont_power'] = ($request->indikator_ont_power == true ? true : false);
+            $data['indikator_ont_dsl'] = ($request->indikator_ont_dsl == true ? true : false);
+            $data['indikator_ont_internet'] = ($request->indikator_ont_internet == true ? true : false);
+            $item = FormPekerjaan::findOrFail($id);
+
+            $item->update($data);
+
+            return redirect()->route('index')->with('success', 'Data Berhasil Diupdate');
+        } else {
+            return redirect()->route('kelola-teknisi');
+        }
     }
 
     /**
@@ -92,6 +120,14 @@ class FormPekerjaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::user()->roles == "TEKNISI") {
+            $item = FormPekerjaan::findOrFail($id);
+
+            $item->delete();
+
+            return redirect()->route('index')->with('success', 'Data Berhasil Dihapus');
+        } else {
+            return redirect()->route('kelola-teknisi');
+        }
     }
 }

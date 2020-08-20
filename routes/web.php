@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/admin', 'AdminController@index')->name('kelola-teknisi');
+
+
+Route::get('/hasil-pengerjaan/{id}/edit', 'FormPekerjaanController@edit')->name('edit-data')->middleware('auth');
+Route::put('/hasil-pengerjaan/{id}/update', 'FormPekerjaanController@update')->name('update-data')->middleware('auth');
+Route::delete('/hasil-pengerjaan/{id}', 'FormPekerjaanController@destroy')->name('delete-data')->middleware('auth');
 Route::resource('/', 'FormPekerjaanController')->middleware('auth');
 
-Route::get('/admin', 'AdminController@index')->name('kelola-teknisi');
 
 Auth::routes();

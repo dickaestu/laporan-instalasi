@@ -41,7 +41,7 @@ class CreateLaporanInstalasiTable extends Migration
             $table->string('sn_plc')->nullable();
             $table->string('sn_wifi_ext')->nullable();
             $table->string('mac_address_stb')->nullable();
-            $table->enum('psb', ['PSB 1P [Voice] / 1P [Internet]', 'PSB 2P [Voice + Internet]', 'PSB 3P'])->nullable();
+            $table->enum('psb', ['1P [Voice] / 1P [Internet]', '2P [Voice + Internet]', '3P'])->nullable();
             $table->enum('tambahan', ['change stb', 'plc', 'indibox', 'stb tambahan', 'wifi extender'])->nullable();
             $table->enum('migrasi', [
                 'Infrastruktur 1P-1P[Voice]',

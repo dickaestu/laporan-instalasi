@@ -10,14 +10,14 @@
   <hr class="sidebar-divider my-0">
   
   @if (Auth::user()->roles == 'TEKNISI')
-  <li class="nav-item active">
-    <a class="nav-link" href="{{ route('index') }}">
+  <li class="nav-item {{ Request::is('create') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('create') }}">
       <i class="fas fa-fw fa-file-alt"></i>
       <span>Form Pekerjaan</span></a>
     </li>
     
-    <li class="nav-item">
-      <a class="nav-link" href="index.html">
+    <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
+      <a class="nav-link" href="{{ route('index') }}">
         <i class="fas fa-fw fa-file"></i>
         <span>Hasil Pengerjaan</span></a>
       </li>
