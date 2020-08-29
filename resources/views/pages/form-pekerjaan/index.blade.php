@@ -51,7 +51,7 @@
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
                             </td>
-                            <td><a href="{{ route('pages/export/export-teknisi', $item->id) }}" class="btn btn-sm btn-primary fas fa-download"> Pdf</a></td>
+                            <td><a href="{{ route('pages/export/export-teknisi', $item->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> Pdf</a></td>
                             
                         </tr>
                         

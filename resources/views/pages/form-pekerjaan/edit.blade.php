@@ -125,7 +125,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="soc_ils">UTP-C6</label>
+                                <label for="soc_ils">SOC_ILS</label>
                                 <input type="text" class="form-control form-control-sm @error('soc_ils') is-invalid @enderror" id="soc_ils" name="soc_ils" value="{{ $item->soc_ils }}">
                                 @error('soc_ils') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>

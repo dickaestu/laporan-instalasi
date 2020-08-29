@@ -80,7 +80,7 @@ nav {
     <table border="1" align="left" style="width:50%">
         <thead>
            
-                @foreach ($items as $item)
+              
                 <br>
                 <th align="left">
                     <font size="2">1. STO : {{$item->sto}}</font><br>
@@ -122,9 +122,9 @@ nav {
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <font size="1" ><b>- ONT yang DIPASANG / DITARIK  : {{$item->ont}}</font>&#160&#160&#160
     <font size="1" style="width:50%"><b> S/N ONT  : {{$item->sn_ont}}</b></font><br>
-    <font size="1"><b>- Lampu Indikator ONT Nyala    : <input type="checkbox" id="indikator_ont_power" name="indikator_ont_power" value="{{$item->indikator_ont_power}}">
-    <label for="indikator_ont_power"></label> <input type="checkbox" id="indikator_ont_dsl" name="indikator_ont_dsl" value="{{$item->indikator_ont_dsl}}">
-    <label for="indikator_ont_dsl"></label><input type="checkbox" id="indikator_ont_internet" name="indikator_ont_internet" value="{{$item->indikator_ont_internet}}">
+    <font size="1"><b>- Lampu Indikator ONT Nyala    : <input type="checkbox" id="indikator_ont_power" name="indikator_ont_power" value="" {{$item->indikator_ont_power == true ? 'checked' : ''}}>
+    <label for="indikator_ont_power"></label> <input type="checkbox" id="indikator_ont_dsl" name="indikator_ont_dsl" value="" {{$item->indikator_ont_dsl == true ? 'checked' : ''}}>
+    <label for="indikator_ont_dsl"></label><input type="checkbox" id="indikator_ont_internet" name="indikator_ont_internet" value="" {{$item->indikator_ont_internet == true ? 'checked' : ''}}>
     <label for="indikator_ont_internet"></label> &#160&#160&#160
     SN PLC  : {{$item->sn_plc}}</font></b><br>
     <font size="1"><b>- Nama / Notel Teknisi : {{$item->nama_teknisi}} &#160&#160&#160&#160&#160&#160&#160
@@ -143,25 +143,26 @@ nav {
                 <font size="1"><b><th align="center" style="width:50%">Tambahan</th></b></font>
             </tr>
             <tr>
-                <font size="1" align="left"><td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <font size="1" align="left"><td>
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->psb == '1P [Voice] / 1P [Internet]' ? 'checked' :'' }} >
                     <label for="vehicle1">1P [Voice]/ 1P [Internet]</label>
-                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->psb == '2P [Voice + Internet]' ? 'checked' :'' }}>
                     <label for="vehicle1">3P</label> <br>
                     <input type="checkbox" id="vehicle1"
-                        name="vehicle1" value="Bike">
+                        name="vehicle1" value="Bike" {{ $item->psb == '3P' ? 'checked' :'' }}>
                         <label for="vehicle1">{{$item->psb}}2P [Voice + Internet]/ 2P [Internet + UseeTv]</label>
                         </td></font><br>
 
-                        <td><br><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                        <td><br><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->tambahan == 'change stb' ? 'checked' : '' }} >
                             <label for="vehicle1">Change STB </label>
-                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->tambahan == 'stb tambahan' ? 'checked' : '' }}>
                             <label for="vehicle1">STB Tambahan</label><br>
-                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->tambahan == 'plc' ? 'checked' : '' }}>
                             <label for="vehicle1">{{$item->tambahan}} PLC
                             </label>&nbsp;
-                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"  {{ $item->tambahan  == 'wifi extender' ? 'checked' : '' }}>
                             <label for="vehicle1"> Wifi Extender </label><br>
-                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->tambahan == 'indibox' ? 'checked' : '' }}>
                             <label for="vehicle1"> IndiBox </label>
                         </td>
             </tr>
@@ -178,10 +179,11 @@ nav {
                         </b></font>
                 </tr>
                 <tr>
-                    <td><br>Infastruktur <input type="checkbox" id="vehicle1"
-                            name="vehicle1" value="Bike">
+                    <td><br>Infastruktur 
+                        <input type="checkbox" id="vehicle1"
+                            name="vehicle1" value="Bike" {{ $item->migrasi  == 'Infrastruktur 1P-1P[Voice]' ? 'checked' : '' }}>
                         <label for="vehicle1"> 1P-1P [Voice]</label>
-                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" >
                     <label for="vehicle1"> 1P-1P [Voice+Internet]</label>
                     <input type="checkbox" id="vehicle1"
                         name="vehicle1"
@@ -194,7 +196,7 @@ nav {
                     <input type="checkbox" id="vehicle1" name="vehicle1"
                         value="Bike">
                     <label for="vehicle1">{{$item->migrasi}} 3P-3P</label><br>
-                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->migrasi  == 'Infrastruktur 1P-1P[Internet]' ? 'checked' : '' }}>
                         <label for="vehicle1"> 1P-1P [Internet]</label>
                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                         <label for="vehicle1"> 1P-2P [Internet+UseeTv]</label>
@@ -220,33 +222,33 @@ nav {
             
         </table>
         <br>
-         <font size="3">Speed  :<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+         <font size="3">Speed  :<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->speed == '10 MB' ? 'checked':'' }}>
                  <label for="vehicle1">{{$item->speed}} 10MB</label>
-                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->speed == '20 MB' ? 'checked':'' }}>
                  <label for="vehicle1"> 20MB</label>
                  <input type="checkbox" id="vehicle1"
-                     name="vehicle1" value="Bike">
+                     name="vehicle1" value="Bike" {{ $item->speed == '30 MB' ? 'checked':'' }}>
                  <label for="vehicle1"> 30MB</label>
                  <input type="checkbox" id="vehicle1"
-                     name="vehicle1" value="Bike">
+                     name="vehicle1" value="Bike" {{ $item->speed == '40 MB' ? 'checked':'' }}>
                  <label for="vehicle1"> 40MB</label>
                  <input type="checkbox" id="vehicle1"
-                     name="vehicle1" value="Bike">
+                     name="vehicle1" value="Bike" {{ $item->speed == '50 MB' ? 'checked':'' }}>
                  <label for="vehicle1"> 50MB</label>
                  <input type="checkbox" id="vehicle1"
-                     name="vehicle1" value="Bike">
+                     name="vehicle1" value="Bike" {{ $item->speed == '100 MB' ? 'checked':'' }}>
                  <label for="vehicle1"> 100MB</label>
-                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->speed == '200 MB' ? 'checked':'' }}>
                  <label for="vehicle1"> 200MB</label>
                  <input type="checkbox" id="vehicle1"
-                     name="vehicle1" value="Bike">
+                     name="vehicle1" value="Bike" {{ $item->speed == '300 MB' ? 'checked':'' }}>
                  <label for="vehicle1"> 300MB</label>
                  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                  <label for="vehicle1"> 1GB</label>
-                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {{ $item->speed == 'Other' ? 'checked':'' }}>
                  <label for="vehicle1">Other</label>
                  </font>
-                 @endforeach
+              
                  <br>
                  Disclaimer:<br>
                  <font size="2">1. Perangkat (ONT/Modem/STB) yang dipasang dirumah pelanggan adalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali<br>

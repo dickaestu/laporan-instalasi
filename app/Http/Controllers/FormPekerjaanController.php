@@ -132,12 +132,12 @@ class FormPekerjaanController extends Controller
         }
     }
 
-    public function exportTeknisi()
+    public function exportTeknisi($id)
     {
         if (Auth::user()->roles == "TEKNISI") {
-            $items = FormPekerjaan::where('nama_teknisi', Auth::user()->name)->get();
-        $pdf = PDF::loadView('pages.export.export-teknisi', ['items' =>$items])->setPaper('a3','potrait');
-        return $pdf->download('laporan.pdf', compact('items'));
+            $item = FormPekerjaan::findOrFail($id);
+            $pdf = PDF::loadView('pages.export.export-teknisi', ['item' => $item])->setPaper('a3', 'potrait');
+            return $pdf->download('laporan.pdf', compact('item'));
+        }
     }
-}
 }

@@ -294,6 +294,6 @@ nav {
             <br>
             
             <font size="3">{{ Auth::user()->name }}</font><BR></right></center>
-
+    </td>
 </body>
 </html>
