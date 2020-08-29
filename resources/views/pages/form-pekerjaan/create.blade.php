@@ -116,6 +116,12 @@
                                 <input type="text" class="form-control form-control-sm @error('ac_of_sm_1b') is-invalid @enderror" id="ac_of_sm_1b" name="ac_of_sm_1b" value="{{ old('ac_of_sm_1b') }}">
                                 @error('ac_of_sm_1b') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
+
+                            <div class="form-group">
+                                <label for="breket_a">BREKET.A</label>
+                                <input type="text" class="form-control form-control-sm @error('breket_a') is-invalid @enderror" id="breket_a" name="breket_a" value="{{ old('breket_a') }}">
+                                @error('breket_a') <div class="invalid-feedback">{{ $message }}</div>@enderror
+                            </div>
                             
                             <div class="form-group">
                                 <label for="rs_in_sc_1">RS-IN-SC-1</label>
@@ -124,9 +130,9 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="utp_c6">UTP-C6</label>
-                                <input type="text" class="form-control form-control-sm @error('utp_c6') is-invalid @enderror" id="utp_c6" name="utp_c6" value="{{ old('utp_c6') }}">
-                                @error('utp_c6') <div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <label for="soc_ils">SOC-ILS</label>
+                                <input type="text" class="form-control form-control-sm @error('soc_ils') is-invalid @enderror" id="soc_ils" name="soc_ils" value="{{ old('soc_ils') }}">
+                                @error('soc_ils') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                         </div>
                     </div>

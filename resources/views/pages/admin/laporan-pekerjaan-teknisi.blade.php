@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Hasil Pengerjaan')
+@section('title', 'Laporan Pekerjaan Teknisi')
 
 @section('content')
 <div class="container-fluid">
@@ -9,11 +9,20 @@
     </div>    
     @endif
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800 text-center">Hasil Pengerjaan</h1>
+    <h1 class="h3 mb-4 text-gray-800 text-center">Laporan Pekerjaan Teknisi</h1>
     
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-   
+    <div class="card-header py-3">
+            
+            
+           
+          
+          <div class="col-md-12" align="right">
+          <a href="{{ route('pages/admin/export/exportExcel') }}" class="btn btn-sm btn-success">Export Excel</a>
+        </div>
+        </div>
+        
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -27,7 +36,7 @@
                             <th>No Internet</th>
                             <th>Alamat</th>
                             <th>Tanggal WO</th>
-                            <th class="text-center"colspan="3">Aksi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     
@@ -44,14 +53,12 @@
                             <td>{{ $item->nomor_internet }}</td>
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->tanggal_wo }}</td>
-                            <td><a href="{{ route('edit-data', $item->id) }}" class="btn btn-sm btn-warning">Detail</a></td>
-                                <td><form action="{{ route('delete-data', $item->id) }}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                            
+                            <td>
+                                <a href="{{ route('pages/admin/export/export-pdf') }}" class="btn btn-sm btn-danger">Export Pdf</a>
+                                
                             </td>
-                            <td><a href="{{ route('pages/export/export-teknisi', $item->id) }}" class="btn btn-sm btn-primary fas fa-download"> Pdf</a></td>
+                            
                             
                         </tr>
                         

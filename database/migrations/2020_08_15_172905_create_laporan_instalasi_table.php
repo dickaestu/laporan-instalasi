@@ -27,8 +27,9 @@ class CreateLaporanInstalasiTable extends Migration
             $table->string('klem');
             $table->string('kec');
             $table->string('ac_of_sm_1b');
+            $table->string('breket_a');
             $table->string('rs_in_sc_1');
-            $table->string('utp_c6');
+            $table->string('soc_ils');
             $table->string('ont');
             $table->boolean('indikator_ont_power')->default(false);
             $table->boolean('indikator_ont_dsl')->default(false);

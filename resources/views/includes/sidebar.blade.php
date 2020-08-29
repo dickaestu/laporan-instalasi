@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
   
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('kelola-teknisi') }}">
     <p class="d-md-none">{{ Auth::user()->roles }}</p>
     <div class="sidebar-brand-text mx-3">{{ Auth::user()->roles }}</div>
   </a>
@@ -10,6 +10,11 @@
   <hr class="sidebar-divider my-0">
   
   @if (Auth::user()->roles == 'TEKNISI')
+  <li class="nav-item {{ Request::is('pages.dashboard') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('dashboard') }}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Dashboard</span></a>
+    </li>
   <li class="nav-item {{ Request::is('create') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('create') }}">
       <i class="fas fa-fw fa-file-alt"></i>
@@ -22,13 +27,20 @@
         <span>Hasil Pengerjaan</span></a>
       </li>
       @else
-      <li class="nav-item">
+      <li class="nav-item {{ Request::is('pages/admin/dashboard-admin') ? 'active' : '' }}">
+      <a class="nav-link" href="{{ route('dashboard-admin') }}">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Dashboard</span></a>
+      </li>
+
+      <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
       <a class="nav-link" href="{{ route('kelola-teknisi') }}">
         <i class="fas fa-fw fa-users"></i>
         <span>Kelola Akun Teknisi</span></a>
       </li>
-      <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      
+      <li class="nav-item {{ Request::is('pages/admin/laporan-pekerjaan-teknisi') ? 'active' : '' }}">
+      <a class="nav-link" href="{{ route('laporan-pekerjaan-teknisi') }}">
         <i class="fas fa-fw fa-file"></i>
         <span>Laporan Pekerjaan Teknisi</span></a>
       </li>

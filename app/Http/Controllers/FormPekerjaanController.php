@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\FormPekerjaan;
 use App\Http\Requests\FormPekerjaanRequest;
 use Illuminate\Http\Request;
@@ -130,4 +131,13 @@ class FormPekerjaanController extends Controller
             return redirect()->route('kelola-teknisi');
         }
     }
+
+    public function exportTeknisi()
+    {
+        if (Auth::user()->roles == "TEKNISI") {
+            $items = FormPekerjaan::where('nama_teknisi', Auth::user()->name)->get();
+        $pdf = PDF::loadView('pages.export.export-teknisi', ['items' =>$items])->setPaper('a3','potrait');
+        return $pdf->download('laporan.pdf', compact('items'));
+    }
+}
 }
