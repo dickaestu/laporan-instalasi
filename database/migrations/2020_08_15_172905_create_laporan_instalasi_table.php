@@ -15,6 +15,7 @@ class CreateLaporanInstalasiTable extends Migration
     {
         Schema::create('laporan_instalasi', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('users_id_teknisi');
             $table->enum('sto', ['CPD', 'CKL', 'LGK', 'PPG', 'CUG', 'PKU']);
             $table->string('no_permintaan');
             $table->string('nomor_telepon');
@@ -30,15 +31,14 @@ class CreateLaporanInstalasiTable extends Migration
             $table->string('breket_a');
             $table->string('rs_in_sc_1');
             $table->string('soc_ils');
-            $table->string('ont');
+            $table->enum('ont', ['ZTE', 'Huawei', 'Fiber Home']);
             $table->boolean('indikator_ont_power')->default(false);
             $table->boolean('indikator_ont_dsl')->default(false);
             $table->boolean('indikator_ont_internet')->default(false);
-            $table->string('nama_teknisi');
             $table->string('nama_anggota_1');
             $table->string('nama_anggota_2');
-            $table->string('stb_tambahan');
-            $table->string('sn_ont');
+            $table->string('stb_tambahan')->nullable();
+            $table->string('sn_ont')->nullable();
             $table->string('sn_plc')->nullable();
             $table->string('sn_wifi_ext')->nullable();
             $table->string('mac_address_stb')->nullable();
@@ -61,6 +61,9 @@ class CreateLaporanInstalasiTable extends Migration
             ])->nullable();
             $table->enum('speed', ['10 MB', '20 MB', '30 MB', '40 MB', '50 MB', '100 MB', '200 MB', '300 MB', 'Other']);
             $table->timestamps();
+
+
+            $table->foreign('users_id_teknisi')->references('id')->on('users')->onUpdate('cascade');
         });
     }
 

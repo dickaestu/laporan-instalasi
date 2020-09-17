@@ -44,8 +44,8 @@
                             <td>{{ $item->nomor_internet }}</td>
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->tanggal_wo }}</td>
-                            <td><a href="{{ route('edit-data', $item->id) }}" class="btn btn-sm btn-warning">Detail</a></td>
-                                <td><form action="{{ route('delete-data', $item->id) }}" method="post">
+                            <td><a href="{{ route('form-pekerjaan.edit', $item->id) }}" class="btn btn-sm btn-warning">Detail & Edit</a></td>
+                            <td><form action="{{ route('form-pekerjaan.destroy', $item->id) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>

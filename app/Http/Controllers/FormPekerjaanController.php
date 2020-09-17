@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use PDF;
 use App\FormPekerjaan;
 use App\Http\Requests\FormPekerjaanRequest;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,11 +19,11 @@ class FormPekerjaanController extends Controller
     public function index()
     {
         if (Auth::user()->roles == "TEKNISI") {
-            $items = FormPekerjaan::where('nama_teknisi', Auth::user()->name)->get();
+            $items = FormPekerjaan::where('users_id_teknisi', Auth::id())->get();
 
             return view('pages.form-pekerjaan.index', compact('items'));
         } else {
-            return redirect()->route('kelola-teknisi');
+            return redirect()->route('dashboard-admin');
         }
     }
 
@@ -34,9 +35,10 @@ class FormPekerjaanController extends Controller
     public function create()
     {
         if (Auth::user()->roles == "TEKNISI") {
-            return view('pages.form-pekerjaan.create');
+            $users = User::where('id', '!=', Auth::id())->where('roles', 'teknisi')->get();
+            return view('pages.form-pekerjaan.create', compact('users'));
         } else {
-            return redirect()->route('kelola-teknisi');
+            return redirect()->route('dashboard-admin');
         }
     }
 
@@ -50,11 +52,13 @@ class FormPekerjaanController extends Controller
     {
         if (Auth::user()->roles == "TEKNISI") {
             $item = $request->all();
+            $item['users_id_teknisi'] = Auth::id();
+
             FormPekerjaan::create($item);
 
-            return redirect()->route('index')->with('success', 'Data Berhasil Dibuat');
+            return redirect()->route('form-pekerjaan.index')->with('success', 'Data Berhasil Dibuat');
         } else {
-            return redirect()->route('kelola-teknisi');
+            return redirect()->route('dashboard-admin');
         }
     }
 
@@ -80,9 +84,10 @@ class FormPekerjaanController extends Controller
 
         if (Auth::user()->roles == "TEKNISI") {
             $item = FormPekerjaan::findOrFail($id);
-            return view('pages.form-pekerjaan.edit', compact('item'));
+            $users = User::where('id', '!=', Auth::id())->where('roles', 'teknisi')->get();
+            return view('pages.form-pekerjaan.edit', compact('item', 'users'));
         } else {
-            return redirect()->route('kelola-teknisi');
+            return redirect()->route('dashboard-admin');
         }
     }
 
@@ -103,13 +108,14 @@ class FormPekerjaanController extends Controller
             $data['indikator_ont_power'] = ($request->indikator_ont_power == true ? true : false);
             $data['indikator_ont_dsl'] = ($request->indikator_ont_dsl == true ? true : false);
             $data['indikator_ont_internet'] = ($request->indikator_ont_internet == true ? true : false);
+            $data['users_id_teknisi'] = Auth::id();
             $item = FormPekerjaan::findOrFail($id);
 
             $item->update($data);
 
-            return redirect()->route('index')->with('success', 'Data Berhasil Diupdate');
+            return redirect()->route('form-pekerjaan.index')->with('success', 'Data Berhasil Diupdate');
         } else {
-            return redirect()->route('kelola-teknisi');
+            return redirect()->route('dashboard-admin');
         }
     }
 
@@ -126,9 +132,9 @@ class FormPekerjaanController extends Controller
 
             $item->delete();
 
-            return redirect()->route('index')->with('success', 'Data Berhasil Dihapus');
+            return redirect()->route('form-pekerjaan.index')->with('success', 'Data Berhasil Dihapus');
         } else {
-            return redirect()->route('kelola-teknisi');
+            return redirect()->route('dashboard-admin');
         }
     }
 

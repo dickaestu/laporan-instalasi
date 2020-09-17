@@ -8,15 +8,13 @@ use App\FormPekerjaan;
 
 class DashboardController extends Controller
 {
-    public function index() 
+    public function index()
     {
-        if (Auth::user()->roles == "TEKNISI"){
-            $total = FormPekerjaan::where('nama_teknisi', Auth::user()->name)->count();
+        if (Auth::user()->roles == "TEKNISI") {
+            $total = FormPekerjaan::where('users_id_teknisi', Auth::id())->count();
             return view('pages.dashboard', compact('total'));
+        } else {
+            return redirect()->route('dashboard-admin');
         }
-        
     }
-    
 }
-
-        

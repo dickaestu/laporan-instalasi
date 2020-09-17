@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 //-----------------ADMIN---------------------//
-
-Route::get('/admin', 'AdminController@index')->name('kelola-teknisi');
-Route::get('/pages/admin/dashboard-admin', 'AdminController@dashboard')->name('dashboard-admin');
-Route::get('/pages/admin/laporan-pekerjaan-teknisi', 'AdminController@laporan')->name('laporan-pekerjaan-teknisi');
+Route::prefix('admin')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/', 'AdminController@dashboard')
+            ->name('dashboard-admin');
+        Route::get('kelola-teknisi', 'AdminController@index')->name('kelola-teknisi');
+        Route::get('laporan-pekerjaan-teknisi', 'AdminController@laporan')->name('laporan-pekerjaan-teknisi');
+        Route::get('create-teknisi', 'AdminController@createTeknisi')->name('create-teknisi');
+        Route::post('store-akun-teknisi', 'AdminController@storeAkunTeknisi')->name('store-akun-teknisi');
+    });
 
 //-----------------EXPORT-ADMIN--------------------//
 Route::get('/pages/admin/export/export-pdf', 'AdminController@exportPdf')->name('pages/admin/export/export-pdf');
@@ -27,11 +34,8 @@ Route::get('/pages/admin/exportExcel', 'AdminController@exportExcel')->name('pag
 
 //-----------------TEKNISI--------------------//
 
-Route::get('/pages.dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('/hasil-pengerjaan/{id}/edit', 'FormPekerjaanController@edit')->name('edit-data')->middleware('auth');
-Route::put('/hasil-pengerjaan/{id}/update', 'FormPekerjaanController@update')->name('update-data')->middleware('auth');
-Route::delete('/hasil-pengerjaan/{id}', 'FormPekerjaanController@destroy')->name('delete-data')->middleware('auth');
-Route::resource('/', 'FormPekerjaanController')->middleware('auth');
+Route::get('/', 'DashboardController@index')->name('dashboard')->middleware('auth');
+Route::resource('/form-pekerjaan', 'FormPekerjaanController')->middleware('auth');
 
 //-----------------EKSPORT-TEKNISI--------------------//
 Route::get('/pages/export/{id}/export-teknisi', 'FormPekerjaanController@exportTeknisi')->name('pages/export/export-teknisi');

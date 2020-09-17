@@ -25,6 +25,7 @@ class FormPekerjaanRequest extends FormRequest
     {
         return [
             'sto' => 'required|in:CPD,CKL,LGK,PPG,CUG,PKU',
+            'users_id_teknisi' => 'required',
             'no_permintaan' => 'required',
             'nomor_telepon' => 'required',
             'nomor_internet' => 'required',
@@ -36,18 +37,17 @@ class FormPekerjaanRequest extends FormRequest
             'klem' => 'required',
             'kec' => 'required',
             'ac_of_sm_1b' => 'required',
-            'breket_a' => 'required',
-            'rs_in_sc_1' => 'required',
-            'soc_ils' => 'required',
-            'ont' => 'required',
+            'breket_a' => 'required|max:1',
+            'rs_in_sc_1' => 'required|max:1',
+            'soc_ils' => 'required|max:1',
+            'ont' => 'required|in:ZTE,Huawei,Fiber Home',
             'indikator_ont_power' => 'boolean',
             'indikator_ont_dsl' => 'boolean',
             'indikator_ont_internet' => 'boolean',
-            'nama_teknisi' => 'required|string',
-            'nama_anggota_1' => 'required|string',
-            'nama_anggota_2' => 'required|string',
-            'stb_tambahan' => 'required',
-            'sn_ont' => 'required|string',
+            'nama_anggota_1' => 'required|string|not_in:0',
+            'nama_anggota_2' => 'required|string|not_in:0',
+            'stb_tambahan' => 'nullable',
+            'sn_ont' => 'nullable|string',
             'sn_plc' => 'nullable|string',
             'sn_wifi_ext' => 'nullable|string',
             'mac_address_stb' => 'nullable|string',
@@ -55,6 +55,21 @@ class FormPekerjaanRequest extends FormRequest
             'tambahan' => 'nullable|required_without_all:psb,migrasi',
             'migrasi' => 'nullable|required_without_all:psb,tambahan',
             'speed' => 'required|in:10 MB,20 MB,30 MB,40 MB,50 MB,100 MB,200 MB,300 MB,Other',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'breket_a.max' => 'Tidak boleh lebih dari 1 digit',
+            'rs_in_sc_1.max' => 'Tidak boleh lebih dari 1 digit',
+            'soc_ils.max' => 'Tidak boleh lebih dari 1 digit',
+            'sto.in' => 'Anda Belum Memilih',
+            'ont.in' => 'Anda Belum Memilih',
+            'nama_anggota_1.not_in' => 'Anda Belum Memilih',
+            'nama_anggota_2.not_in' => 'Anda Belum Memilih',
+            'psb.required_without_all' => 'Anda belum memilih PSB/TAMBAHAN/MIGRASI',
+            'speed.required' => 'Anda belum memilih'
         ];
     }
 }

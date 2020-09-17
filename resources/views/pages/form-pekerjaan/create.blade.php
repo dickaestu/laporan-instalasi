@@ -19,7 +19,7 @@
     </div><br />
     @endif --}}
     <!-- Page Heading -->
-    <form action="{{ route('store') }}" method="POST">
+    <form action="{{ route('form-pekerjaan.store') }}" method="POST">
         @csrf
         <div class="container">
             <h4 class="text-center mb-4 text-gray-800">LAPORAN PENYELESAIAN PEKERJAAN INSTALASI PASANG SAMBUNG BARU/MIGRASI</h4>
@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="sto">STO</label>
-                                <select name="sto" class="form-control form-control-sm  @error('sto') is-invalid @enderror" id="sto">
+                                <select name="sto" class="form-control form-control-sm  @error('sto') is-invalid @enderror" id="sto" required>
                                     <option>Silahkan Pilih</option>
                                     <option value="CPD">CPD</option>
                                     <option value="CKL">CKL</option>
@@ -43,37 +43,37 @@
                             
                             <div class="form-group">
                                 <label for="no_permintaan">No Permintaan</label>
-                                <input type="number" class="form-control form-control-sm @error('no_permintaan') is-invalid @enderror" id="no_permintaan" name="no_permintaan" value="{{ old('no_permintaan') }}">
+                                <input required type="number" class="form-control form-control-sm @error('no_permintaan') is-invalid @enderror" id="no_permintaan" name="no_permintaan" value="{{ old('no_permintaan') }}">
                                 @error('sto') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="nomor_telepon">No Telepon</label>
-                                <input type="number" class="form-control form-control-sm @error('nomor_telepon') is-invalid @enderror " id="nomor_telepon" name="nomor_telepon" value="{{ old('nomor_telepon') }}">
+                                <input required type="number" class="form-control form-control-sm @error('nomor_telepon') is-invalid @enderror " id="nomor_telepon" name="nomor_telepon" value="{{ old('nomor_telepon') }}">
                                 @error('nomor_telepon') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="nomor_internet">No Internet</label>
-                                <input type="number" class="form-control form-control-sm @error('nomor_internet') is-invalid @enderror" id="nomor_internet" name="nomor_internet" value="{{ old('nomor_internet') }}">
+                                <input required type="number" class="form-control form-control-sm @error('nomor_internet') is-invalid @enderror" id="nomor_internet" name="nomor_internet" value="{{ old('nomor_internet') }}">
                                 @error('nomor_internet') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="nama_pelanggan">Nama Pelanggan</label>
-                                <input type="type" class="form-control form-control-sm @error('nama_pelanggan') is-invalid @enderror" id="nama_pelanggan" name="nama_pelanggan" value="{{ old('nama_pelanggan') }}">
+                                <input required type="type" class="form-control form-control-sm @error('nama_pelanggan') is-invalid @enderror" id="nama_pelanggan" name="nama_pelanggan" value="{{ old('nama_pelanggan') }}">
                                 @error('nama_pelanggan') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="tanggal_wo">Tanggal WO</label>
-                                <input type="date" class="form-control form-control-sm  @error('tanggal_wo') is-invalid @enderror" id="tanggal_wo" name="tanggal_wo" value="{{ old('tanggal_wo') }}">
+                                <input required type="date" class="form-control form-control-sm  @error('tanggal_wo') is-invalid @enderror" id="tanggal_wo" name="tanggal_wo" value="{{ old('tanggal_wo') }}">
                                 @error('tanggal_wo') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <textarea class="form-control form-control-sm @error('alamat') is-invalid @enderror" id="alamat" name="alamat">{{ old('alamat') }}</textarea>
+                                <textarea required class="form-control form-control-sm @error('alamat') is-invalid @enderror" id="alamat" name="alamat">{{ old('alamat') }}</textarea>
                                 @error('alamat') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                         </div>
@@ -87,25 +87,25 @@
                             
                             <div class="form-group">
                                 <label for="rk_msan_odc">RK/MSAN/ODC</label>
-                                <input type="text" class="form-control form-control-sm @error('rk_msan_odc') is-invalid @enderror" id="rk_msan_odc" name="rk_msan_odc" value="{{ old('rk_msan_odc') }}">
+                                <input required type="text" class="form-control form-control-sm @error('rk_msan_odc') is-invalid @enderror" id="rk_msan_odc" name="rk_msan_odc" value="{{ old('rk_msan_odc') }}">
                                 @error('rk_msan_odc') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="dp_odp">DP/ODP</label>
-                                <input type="text" class="form-control form-control-sm @error('dp_odp') is-invalid @enderror" id="dp_odp" name="dp_odp" value="{{ old('dp_odp') }}">
+                                <input required type="text" class="form-control form-control-sm @error('dp_odp') is-invalid @enderror" id="dp_odp" name="dp_odp" value="{{ old('dp_odp') }}">
                                 @error('dp_odp') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="klem">Klem Primer/Feeder</label>
-                                <input type="text" class="form-control form-control-sm @error('klem') is-invalid @enderror" id="klem" name="klem" value="{{ old('klem') }}">
+                                <input required type="number" class="form-control form-control-sm @error('klem') is-invalid @enderror" id="klem" name="klem" value="{{ old('klem') }}">
                                 @error('klem') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="kec">Kec sec/Distribusi</label>
-                                <input type="text" class="form-control form-control-sm @error('kec') is-invalid @enderror" id="kec" name="kec" value="{{ old('kec') }}">
+                                <input required type="number" class="form-control form-control-sm @error('kec') is-invalid @enderror" id="kec" name="kec" value="{{ old('kec') }}">
                                 @error('kec') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
@@ -113,25 +113,25 @@
                             
                             <div class="form-group">
                                 <label for="ac_of_sm_1b">AC-OF-SM-1B</label>
-                                <input type="text" class="form-control form-control-sm @error('ac_of_sm_1b') is-invalid @enderror" id="ac_of_sm_1b" name="ac_of_sm_1b" value="{{ old('ac_of_sm_1b') }}">
+                                <input required type="number" class="form-control form-control-sm @error('ac_of_sm_1b') is-invalid @enderror" id="ac_of_sm_1b" name="ac_of_sm_1b" value="{{ old('ac_of_sm_1b') }}">
                                 @error('ac_of_sm_1b') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="breket_a">BREKET.A</label>
-                                <input type="text" class="form-control form-control-sm @error('breket_a') is-invalid @enderror" id="breket_a" name="breket_a" value="{{ old('breket_a') }}">
+                                <input required type="number"  class="form-control form-control-sm @error('breket_a') is-invalid @enderror" id="breket_a" name="breket_a" value="{{ old('breket_a') }}">
                                 @error('breket_a') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="rs_in_sc_1">RS-IN-SC-1</label>
-                                <input type="text" class="form-control form-control-sm @error('rs_in_sc_1') is-invalid @enderror" id="rs_in_sc_1" name="rs_in_sc_1" value="{{ old('rs_in_sc_1') }}">
+                                <input required type="number"  class="form-control form-control-sm @error('rs_in_sc_1') is-invalid @enderror" id="rs_in_sc_1" name="rs_in_sc_1" value="{{ old('rs_in_sc_1') }}">
                                 @error('rs_in_sc_1') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="soc_ils">SOC-ILS</label>
-                                <input type="text" class="form-control form-control-sm @error('soc_ils') is-invalid @enderror" id="soc_ils" name="soc_ils" value="{{ old('soc_ils') }}">
+                                <input required type="number"  class="form-control form-control-sm @error('soc_ils') is-invalid @enderror" id="soc_ils" name="soc_ils" value="{{ old('soc_ils') }}">
                                 @error('soc_ils') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                         </div>
@@ -144,45 +144,61 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="ont">ONT yang DIPASANG/DITARIK</label>
-                                <input type="text" class="form-control form-control-sm @error('ont') is-invalid @enderror" id="ont" name="ont" value="{{ old('ont') }}">
-                                @error('ont') <div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <select required name="ont" class="form-control form-control-sm @error('ont') is-invalid @enderror">
+                                    <option value="0">Silahkan Pilih</option>
+                                    <option value="ZTE">ZTE</option>
+                                    <option value="Huawei">Huawei</option>
+                                    <option value="Fiber Home">Fiber Home</option>
+                                </select>
+                                 @error('ont') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="" class="d-block">Lampu Indikator ONT Nyala</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="indikator_ont_power" type="checkbox" id="indikator_ont_power" value="1">
+                                    <input  class="form-check-input" name="indikator_ont_power" type="checkbox" id="indikator_ont_power" value="1">
                                     <label class="form-check-label" for="indikator_ont_power">Power</label>
                                     
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="indikator_ont_dsl" type="checkbox" id="indikator_ont_dsl" value="1">
+                                    <input  class="form-check-input" name="indikator_ont_dsl" type="checkbox" id="indikator_ont_dsl" value="1">
                                     <label class="form-check-label" for="indikator_ont_dsl">DSL</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="indikator_ont_internet" id="indikator_ont_internet" value="1">
+                                    <input  class="form-check-input" type="checkbox" name="indikator_ont_internet" id="indikator_ont_internet" value="1">
                                     <label class="form-check-label" for="indikator_ont_internet">Internet</label>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="nama_teknisi">Nama Teknisi</label>
-                                <input type="text" class="form-control form-control-sm @error('nama_teknisi') is-invalid @enderror" id="nama_teknisi" name="nama_teknisi" value="{{ Auth::user()->name }}" readonly>
-                                @error('nama_teknisi') <div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <label>Nama Teknisi</label>
+                                <input required type="text" class="form-control form-control-sm @error('users_id_teknisi') is-invalid @enderror" id="users_id_teknisi" name="users_id_teknisi" value="{{ Auth::user()->name }}" readonly>
+                                @error('users_id_teknisi') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="nama_anggota_1">Nama Anggota 1</label>
-                                <input type="text" class="form-control form-control-sm @error('nama_anggota_1') is-invalid @enderror" id="nama_anggota_1" name="nama_anggota_1" value="{{ old('nama_anggota_1') }}">
+                                <select name="nama_anggota_1" required class="form-control form-control-sm @error('nama_anggota_1') is-invalid @enderror">
+                                <option value="0">Silahkan Pilih Anggota</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->name }}">{{ $user->name }}</option>
+                                @endforeach
+                                </select>
                                 @error('nama_anggota_1') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="nama_anggota_2">Nama Anggota 2</label>
-                                <input type="text" class="form-control form-control-sm @error('nama_anggota_2') is-invalid @enderror" id="nama_anggota_2" name="nama_anggota_2" value="{{ old('nama_anggota_2') }}">
+                                <select name="nama_anggota_2" required class="form-control form-control-sm @error('nama_anggota_2') is-invalid @enderror">
+                                <option value="0">Silahkan Pilih Anggota</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->name }}">{{ $user->name }}</option>
+                                @endforeach
+                                </select>
                                 @error('nama_anggota_2') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
+                          
                             <div class="form-group">
                                 <label for="stb_tambahan">STB Tambahan</label>
                                 <input type="number" class="form-control form-control-sm @error('stb_tambahan') is-invalid @enderror" id="stb_tambahan" name="stb_tambahan" value="{{ old('stb_tambahan') }}">
@@ -197,19 +213,19 @@
                             
                             <div class="form-group">
                                 <label for="sn_plc">SN PLC</label>
-                                <input type="text" class="form-control form-control-sm @error('sn_plc') is-invalid @enderror" id="sn_plc" name="sn_plc" value="{{ old('sn_plc') }}">
+                                <input type="number" class="form-control form-control-sm @error('sn_plc') is-invalid @enderror" id="sn_plc" name="sn_plc" value="{{ old('sn_plc') }}">
                                 @error('sn_plc') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="sn_wifi_ext">SN WIFI EXT</label>
-                                <input type="text" class="form-control form-control-sm @error('sn_wifi_ext') is-invalid @enderror" id="sn_wifi_ext" name="sn_wifi_ext" value="{{ old('sn_wifi_ext') }}">
+                                <input type="number" class="form-control form-control-sm @error('sn_wifi_ext') is-invalid @enderror" id="sn_wifi_ext" name="sn_wifi_ext" value="{{ old('sn_wifi_ext') }}">
                                 @error('sn_wifi_ext') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="mac_address_stb">Mac Address STB</label>
-                                <input type="text" class="form-control form-control-sm @error('mac_address_stb') is-invalid @enderror" id="mac_address_stb" name="mac_address_stb" value="{{ old('mac_address_stb') }}">
+                                <input type="number" class="form-control form-control-sm @error('mac_address_stb') is-invalid @enderror" id="mac_address_stb" name="mac_address_stb" value="{{ old('mac_address_stb') }}">
                                 @error('mac_address_stb') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                         </div>

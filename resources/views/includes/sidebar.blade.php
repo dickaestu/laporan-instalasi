@@ -10,30 +10,30 @@
   <hr class="sidebar-divider my-0">
   
   @if (Auth::user()->roles == 'TEKNISI')
-  <li class="nav-item {{ Request::is('pages.dashboard') ? 'active' : '' }}">
+  <li class="nav-item {{ Request::is('/*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('dashboard') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
     </li>
-  <li class="nav-item {{ Request::is('create') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('create') }}">
+  <li class="nav-item {{ Request::is('/form-pekerjaan*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('form-pekerjaan.create') }}">
       <i class="fas fa-fw fa-file-alt"></i>
       <span>Form Pekerjaan</span></a>
     </li>
     
-    <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
-      <a class="nav-link" href="{{ route('index') }}">
+    <li class="nav-item {{ Request::is('/form-pekerjaan*') ? 'active' : '' }}">
+      <a class="nav-link" href="{{ route('form-pekerjaan.index') }}">
         <i class="fas fa-fw fa-file"></i>
         <span>Hasil Pengerjaan</span></a>
       </li>
       @else
-      <li class="nav-item {{ Request::is('pages/admin/dashboard-admin') ? 'active' : '' }}">
+      <li class="nav-item {{ Request::is('admin*') ? 'active' : '' }}">
       <a class="nav-link" href="{{ route('dashboard-admin') }}">
         <i class="fas fa-fw fa-users"></i>
         <span>Dashboard</span></a>
       </li>
 
-      <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
+      <li class="nav-item {{ Request::is('admin/kelola-teknisi*') ? 'active' : '' }}">
       <a class="nav-link" href="{{ route('kelola-teknisi') }}">
         <i class="fas fa-fw fa-users"></i>
         <span>Kelola Akun Teknisi</span></a>

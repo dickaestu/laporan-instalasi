@@ -3,10 +3,14 @@
 
 @section('content')
 <div class="container-fluid">
-    
+    @if (session('sukses'))
+    <div class="alert alert-success" role="alert">
+        {{session('sukses')}}
+    </div>    
+    @endif
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800 text-center">Daftar Teknisi</h1>
-    
+    <a href="{{ route('create-teknisi') }}" class="btn btn-primary btn-sm shadow-sm mb-3"><i class="fa fa-plus"></i> Buat Akun Teknisi</a>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
        
@@ -18,6 +22,7 @@
                             <th>Nik</th>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>Nomor Telepon</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -30,8 +35,8 @@
                             <td>{{ $item->nik }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
+                            <td>{{ $item->nomor_telepon }}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-warning">Detail</a>
                                 <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
                      
