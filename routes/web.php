@@ -22,6 +22,9 @@ Route::prefix('admin')
             ->name('dashboard-admin');
         Route::get('kelola-teknisi', 'AdminController@index')->name('kelola-teknisi');
         Route::get('laporan-pekerjaan-teknisi', 'AdminController@laporan')->name('laporan-pekerjaan-teknisi');
+        Route::get('laporan-gaji-teknisi', 'AdminController@laporanGaji')->name('laporan-gaji-teknisi');
+        Route::delete('delete-user/{id}', 'AdminController@destroy')->name('delete-user');
+        Route::post('filter-gaji', 'AdminController@filterGaji')->name('filter-gaji');
         Route::get('create-teknisi', 'AdminController@createTeknisi')->name('create-teknisi');
         Route::post('store-akun-teknisi', 'AdminController@storeAkunTeknisi')->name('store-akun-teknisi');
     });

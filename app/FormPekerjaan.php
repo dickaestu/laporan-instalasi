@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FormPekerjaan extends Model
 {
-    protected $table = 'laporan_instalasi';
+    protected $table = 'form_pekerjaan';
     protected $fillable = [
         'sto', 'no_permintaan', 'nomor_telepon', 'nomor_internet', 'nama_pelanggan', 'tanggal_wo',
         'alamat', 'rk_msan_odc', 'dp_odp', 'klem', 'kec', 'ac_of_sm_1b', 'breket_a', 'rs_in_sc_1', 'soc_ils',

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLaporanInstalasiTable extends Migration
+class CreateFormPekerjaanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLaporanInstalasiTable extends Migration
      */
     public function up()
     {
-        Schema::create('laporan_instalasi', function (Blueprint $table) {
+        Schema::create('form_pekerjaan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id_teknisi');
             $table->enum('sto', ['CPD', 'CKL', 'LGK', 'PPG', 'CUG', 'PKU']);
@@ -74,6 +74,6 @@ class CreateLaporanInstalasiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laporan_instalasi');
+        Schema::dropIfExists('form_pekerjaan');
     }
 }

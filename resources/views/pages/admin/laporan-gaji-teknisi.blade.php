@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Kelola Akun Teknisi')
+@section('title', 'Laporan Pekerjaan Teknisi')
 
 @section('content')
 <div class="container-fluid">
@@ -9,44 +9,48 @@
     </div>    
     @endif
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800 text-center">Daftar Teknisi</h1>
-    <a href="{{ route('create-teknisi') }}" class="btn btn-primary btn-sm shadow-sm mb-3"><i class="fa fa-plus"></i> Buat Akun Teknisi</a>
+    <h1 class="h3 mb-4 text-gray-800 text-center">Laporan Gaji Teknisi</h1>
+    <div class="col-md-4 mb-3">
+        <form action="{{ route('filter-gaji') }}" method="post">
+            @csrf
+            <div class="form-group">
+                <label for="">Pilih Bulan Dan Tahun</label>
+                <input required type="date" class="form-control form-control-sm" name="date_filter">
+            </div>
+            <button type="submit" class="btn btn-sm btn-success">Filter</button>
+        </form>
+    </div>
+    
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-       
+        
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Nik</th>
+                            <th>No</th>
                             <th>Nama</th>
-                            <th>Email</th>
-                            <th>Nomor Telepon</th>
-                            <th>Aksi</th>
+                            <th>Jumlah PSB</th>
+                            <th>Jumlah Migrasi</th>
+                            <th>Jumlah Tambahan</th>
+                            <th>Total Gaji</th>
                         </tr>
                     </thead>
-                
+                    
                     <tbody>
-                       
-                        @foreach ($items as $item)
-                            
+                        @foreach ($datas as $data)
                         <tr>
-                            <td>{{ $item->nik }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->nomor_telepon }}</td>
-                            <td>
-                                <form action="{{ route('delete-user',$item->id) }}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?')" class="btn btn-danger btn-sm" type="submit">Hapus</button>
-                                </form>
-                            </td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data->nama_teknisi }}</td>
+                            <td>{{ $data->jumlah_psb }}</td>
+                            <td>{{ $data->jumlah_migrasi }}</td>
+                            <td>{{ $data->jumlah_tambahan }}</td>
+                            <td>Rp. {{$data->total_gaji }}</td>
                      
                         </tr>
-
                         @endforeach
+                        
                     </tbody>
                 </table>
             </div>
