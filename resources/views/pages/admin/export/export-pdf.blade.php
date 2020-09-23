@@ -127,7 +127,7 @@ nav {
     <label for="indikator_ont_dsl"></label><input type="checkbox" id="indikator_ont_internet" name="indikator_ont_internet" value="{{$item->indikator_ont_internet}}">
     <label for="indikator_ont_internet"></label> &#160&#160&#160
     SN PLC  : {{$item->sn_plc}}</font></b><br>
-    <font size="1"><b>- Nama / Notel Teknisi : {{$item->nama_teknisi}} &#160&#160&#160&#160&#160&#160&#160
+    <font size="1"><b>- Nama / Notel Teknisi : {{$item->users_id_teknisi}} &#160&#160&#160&#160&#160&#160&#160
     SN WIFI EXT : {{$item->sn_wifi_ext}}</font></b><br>
     <font size="1"><b>- Nama Anggota 1 : {{$item->nama_anggota_1}} &#160&#160&#160&#160&#160&#160&#160&#160&#160&#160
     Nama Anggota 1 : {{$item->nama_anggota_2}}</font></b><br>
@@ -246,7 +246,7 @@ nav {
                  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                  <label for="vehicle1">Other</label>
                  </font>
-                 @endforeach
+                 
                  <br>
                  Disclaimer:<br>
                  <font size="2">1. Perangkat (ONT/Modem/STB) yang dipasang dirumah pelanggan adalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali<br>
@@ -276,9 +276,9 @@ nav {
             <br>
             <br>
             <br>
-            
+           
             <font size="3">{{ $item->nama_pelanggan}}</font><BR></right></center>
-            
+            @endforeach
     </td>
 <table align="right" align="center" style="width:45%">
     <td><right><center>

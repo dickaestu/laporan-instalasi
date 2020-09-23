@@ -154,13 +154,7 @@ class AdminController extends Controller
 
 
 
-    public function exportPdf()
-    {
-
-        $items = FormPekerjaan::where('nama_teknisi', Auth::user()->name)->get();
-        $pdf = PDF::loadView('pages.admin.export.export-pdf', ['items' => $items])->setPaper('a3', 'potrait');
-        return $pdf->download('laporan.pdf');
-    }
+    
 
     public function exportExcel()
     {

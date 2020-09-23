@@ -36,7 +36,6 @@
                             <th>No Internet</th>
                             <th>Alamat</th>
                             <th>Tanggal WO</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     
@@ -54,10 +53,7 @@
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->tanggal_wo }}</td>
                             
-                            <td>
-                                <a href="{{ route('pages/admin/export/export-pdf') }}" class="btn btn-sm btn-danger">Export Pdf</a>
-                                
-                            </td>
+                            
                             
                             
                         </tr>

@@ -141,9 +141,9 @@ class FormPekerjaanController extends Controller
     public function exportTeknisi($id)
     {
         if (Auth::user()->roles == "TEKNISI") {
-            $item = FormPekerjaan::findOrFail($id);
+            $item = FormPekerjaan::where('id', $id)->where('users_id_teknisi', Auth::id())->first();
             $pdf = PDF::loadView('pages.export.export-teknisi', ['item' => $item])->setPaper('a3', 'potrait');
-            return $pdf->download('laporan.pdf', compact('item'));
+            return $pdf->download('LaporanTeknisi.pdf', compact('item'));
         }
     }
 }

@@ -6,16 +6,23 @@ use App\FormPekerjaan;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class LaporanExport implements FromCollection, WithMapping, WithHeadings
+class LaporanExport implements FromView
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    public function view(): View
+    {
+        return view('pages.admin.export.export-excel', [
+            'items' => FormPekerjaan::all()
+        ]);
+    }
+    /**public function collection()
     {
         return FormPekerjaan::all();
-        //return Vote::with(['kandidat','user'])->where('jenis_kandidat','dpm')->get();
     }
 
     public function map($items): array
@@ -58,6 +65,7 @@ class LaporanExport implements FromCollection, WithMapping, WithHeadings
     public function headings(): array
     {
         return [
+            
             'STO',
             'No Permintaan',
             'Nomor Telepon',
@@ -88,5 +96,5 @@ class LaporanExport implements FromCollection, WithMapping, WithHeadings
             'Migrasi',
             'Speed'
         ];
-    }
+    }*/
 }

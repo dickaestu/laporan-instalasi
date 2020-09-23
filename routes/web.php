@@ -30,7 +30,7 @@ Route::prefix('admin')
     });
 
 //-----------------EXPORT-ADMIN--------------------//
-Route::get('/pages/admin/export/export-pdf', 'AdminController@exportPdf')->name('pages/admin/export/export-pdf');
+
 Route::get('/pages/admin/exportExcel', 'AdminController@exportExcel')->name('pages/admin/export/exportExcel');
 
 
@@ -38,6 +38,8 @@ Route::get('/pages/admin/exportExcel', 'AdminController@exportExcel')->name('pag
 //-----------------TEKNISI--------------------//
 
 Route::get('/', 'DashboardController@index')->name('dashboard')->middleware('auth');
+Route::get('/pages/settings', 'SettingsController@index')->name('settings')->middleware('auth');
+Route::post('/pages/settings', 'SettingsController@settings')->name('password-update')->middleware('auth');
 Route::resource('/form-pekerjaan', 'FormPekerjaanController')->middleware('auth');
 
 //-----------------EKSPORT-TEKNISI--------------------//
