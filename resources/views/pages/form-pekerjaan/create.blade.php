@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label for="no_permintaan">No Permintaan</label>
                                 <input required type="number" class="form-control form-control-sm @error('no_permintaan') is-invalid @enderror" id="no_permintaan" name="no_permintaan" value="{{ old('no_permintaan') }}">
-                                @error('sto') <div class="invalid-feedback">{{ $message }}</div>@enderror
+                                @error('no_permintaan') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             
                             <div class="form-group">
@@ -180,6 +180,7 @@
                                 <label for="nama_anggota_1">Nama Anggota 1</label>
                                 <select name="nama_anggota_1" required class="form-control form-control-sm @error('nama_anggota_1') is-invalid @enderror">
                                 <option value="0">Silahkan Pilih Anggota</option>
+                                {{-- Panggil User yang memiliki roles teknisi --}}
                                 @foreach ($users as $user)
                                     <option value="{{ $user->name }}">{{ $user->name }}</option>
                                 @endforeach
@@ -191,6 +192,7 @@
                                 <label for="nama_anggota_2">Nama Anggota 2</label>
                                 <select name="nama_anggota_2" required class="form-control form-control-sm @error('nama_anggota_2') is-invalid @enderror">
                                 <option value="0">Silahkan Pilih Anggota</option>
+                                {{-- Panggil User yang memiliki roles teknisi --}}
                                 @foreach ($users as $user)
                                     <option value="{{ $user->name }}">{{ $user->name }}</option>
                                 @endforeach

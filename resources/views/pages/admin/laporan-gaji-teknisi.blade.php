@@ -46,7 +46,7 @@
                             <td>{{ $data->jumlah_psb }}</td>
                             <td>{{ $data->jumlah_migrasi }}</td>
                             <td>{{ $data->jumlah_tambahan }}</td>
-                            <td>Rp. {{$data->total_gaji }}</td>
+                            <td>Rp. {{number_format($data->total_gaji) }}</td>
                      
                         </tr>
                         @endforeach

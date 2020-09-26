@@ -26,7 +26,7 @@ class FormPekerjaanRequest extends FormRequest
         return [
             'sto' => 'required|in:CPD,CKL,LGK,PPG,CUG,PKU',
             'users_id_teknisi' => 'required',
-            'no_permintaan' => 'required',
+            'no_permintaan' => 'required|unique:form_pekerjaan',
             'nomor_telepon' => 'required',
             'nomor_internet' => 'required',
             'nama_pelanggan' => 'required|string',
@@ -69,7 +69,8 @@ class FormPekerjaanRequest extends FormRequest
             'nama_anggota_1.not_in' => 'Anda Belum Memilih',
             'nama_anggota_2.not_in' => 'Anda Belum Memilih',
             'psb.required_without_all' => 'Anda belum memilih PSB/TAMBAHAN/MIGRASI',
-            'speed.required' => 'Anda belum memilih'
+            'speed.required' => 'Anda belum memilih',
+            'no_permintaan.unique' => 'Nomor permintaan sudah ada',
         ];
     }
 }

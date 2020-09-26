@@ -19,6 +19,7 @@ class FormPekerjaanController extends Controller
     public function index()
     {
         if (Auth::user()->roles == "TEKNISI") {
+            // panggil data dari form pekerjaan yang memiliki users_id_teknisi sama dengan id user yang sedang login
             $items = FormPekerjaan::where('users_id_teknisi', Auth::id())->get();
 
             return view('pages.form-pekerjaan.index', compact('items'));
@@ -35,7 +36,7 @@ class FormPekerjaanController extends Controller
     public function create()
     {
         if (Auth::user()->roles == "TEKNISI") {
-            $users = User::where('id', '!=', Auth::id())->where('roles', 'teknisi')->get();
+            $users = User::where('roles', 'teknisi')->get();
             return view('pages.form-pekerjaan.create', compact('users'));
         } else {
             return redirect()->route('dashboard-admin');
@@ -51,9 +52,11 @@ class FormPekerjaanController extends Controller
     public function store(FormPekerjaanRequest $request)
     {
         if (Auth::user()->roles == "TEKNISI") {
+            // panggil semua request dari view form pekerjaan -> create.blade.php
             $item = $request->all();
-            $item['users_id_teknisi'] = Auth::id();
 
+            $item['users_id_teknisi'] = Auth::id();
+            // Input semua request yang sudah ditampung di variable item ke database tabelnya form pekerjaan
             FormPekerjaan::create($item);
 
             return redirect()->route('form-pekerjaan.index')->with('success', 'Data Berhasil Dibuat');
@@ -83,6 +86,7 @@ class FormPekerjaanController extends Controller
     {
 
         if (Auth::user()->roles == "TEKNISI") {
+            // cari form pekerjaan yang memiliki id sama dengan id yang diminta
             $item = FormPekerjaan::findOrFail($id);
             $users = User::where('id', '!=', Auth::id())->where('roles', 'teknisi')->get();
             return view('pages.form-pekerjaan.edit', compact('item', 'users'));
@@ -101,6 +105,7 @@ class FormPekerjaanController extends Controller
     public function update(FormPekerjaanRequest $request, $id)
     {
         if (Auth::user()->roles == "TEKNISI") {
+            // buat variable yang menampung semua request dari halaman edit
             $data = $request->all();
             $data['tambahan'] = $request->tambahan;
             $data['psb'] = $request->psb;
@@ -109,6 +114,7 @@ class FormPekerjaanController extends Controller
             $data['indikator_ont_dsl'] = ($request->indikator_ont_dsl == true ? true : false);
             $data['indikator_ont_internet'] = ($request->indikator_ont_internet == true ? true : false);
             $data['users_id_teknisi'] = Auth::id();
+            // cari form pekerjaan yang memiliki id sama dengan id yang diminta
             $item = FormPekerjaan::findOrFail($id);
 
             $item->update($data);
@@ -128,6 +134,7 @@ class FormPekerjaanController extends Controller
     public function destroy($id)
     {
         if (Auth::user()->roles == "TEKNISI") {
+            // cari form pekerjaan yang memiliki id sama dengan id yang diminta
             $item = FormPekerjaan::findOrFail($id);
 
             $item->delete();

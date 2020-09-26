@@ -76,7 +76,7 @@ nav {
     
 <section>
   <nav>
-    Nama Mitra : -
+    Nama Mitra : Golek Raijo
     <br>
     <table border="1" align="left" style="width:50%">
         <thead>

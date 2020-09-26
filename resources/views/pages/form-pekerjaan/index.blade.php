@@ -25,7 +25,8 @@
                             <th>Nama Pelanggan</th>
                             <th>No Telepon</th>
                             <th>No Internet</th>
-                            <th>Alamat</th>
+                            <th>Anggota 1</th>
+                            <th>Anggota 2</th>
                             <th>Tanggal WO</th>
                             <th class="text-center"colspan="3">Aksi</th>
                         </tr>
@@ -42,7 +43,8 @@
                             <td>{{ $item->nama_pelanggan }}</td>
                             <td>{{ $item->nomor_telepon }}</td>
                             <td>{{ $item->nomor_internet }}</td>
-                            <td>{{ $item->alamat }}</td>
+                            <td>{{ $item->nama_anggota_1 }}</td>
+                            <td>{{ $item->nama_anggota_2 }}</td>
                             <td>{{ $item->tanggal_wo }}</td>
                             <td><a href="{{ route('form-pekerjaan.edit', $item->id) }}" class="btn btn-sm btn-warning">Detail & Edit</a></td>
                             <td><form action="{{ route('form-pekerjaan.destroy', $item->id) }}" method="post">

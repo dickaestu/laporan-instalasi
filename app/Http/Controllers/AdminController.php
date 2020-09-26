@@ -27,7 +27,9 @@ class AdminController extends Controller
     public function dashboard()
     {
         if (Auth::user()->roles == "ADMIN") {
+            // untuk menghitung jumlah user yang memiliki role teknisi
             $totalteknisi = User::where('roles', 'TEKNISI')->count();
+            // untuk menghitung jumlah form pekerjaan yang sudah dibuat
             $total = FormPekerjaan::count();
             return view('pages.admin.dashboard-admin', compact('totalteknisi', 'total'));
         } else {
@@ -48,6 +50,7 @@ class AdminController extends Controller
     public function storeAkunTeknisi(Request $request)
     {
         if (Auth::user()->roles == "ADMIN") {
+            // Untuk validasi Request
             $request->validate([
                 'name' => ['required', 'string', 'max:150'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -60,6 +63,7 @@ class AdminController extends Controller
             ]);
             $data = $request->all();
             $data['password'] = bcrypt($request->password);
+            // Masukkan data ke table user di database
             User::create($data);
             return redirect()->route('kelola-teknisi')->with('sukses', 'Akun Berhasil Di Buat');
         } else {
@@ -154,7 +158,7 @@ class AdminController extends Controller
 
 
 
-    
+
 
     public function exportExcel()
     {

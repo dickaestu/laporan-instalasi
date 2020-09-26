@@ -5,7 +5,7 @@
 <div class="container-fluid">
     
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800 text-center">Buat Akun Teknisi</h1>
+    <h1 class="h3 mb-4 text-gray-800 text-center">Buat Akun</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         
@@ -14,27 +14,27 @@
                 @csrf
                 
                 <div class="form-group">
-                    <label for="name">Nama Teknisi</label>
+                    <label for="name">Nama</label>
                     <input type="text" required class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
                     @error('name') <div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
                 <div class="form-group">
-                    <label for="email">Email Teknisi</label>
+                    <label for="email">Email</label>
                     <input type="email" required class="form-control form-control-sm @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
                     @error('email') <div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
                 <div class="form-group">
-                    <label for="password">Password Teknisi</label>
+                    <label for="password">Password</label>
                     <input type="password" required class="form-control form-control-sm @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}">
                     @error('password') <div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
                 <div class="form-group">
-                    <label for="nik">NIK Teknisi</label>
+                    <label for="nik">NIK</label>
                     <input type="number" required class="form-control form-control-sm @error('nik') is-invalid @enderror" id="nik" name="nik" value="{{ old('nik') }}">
                     @error('nik') <div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
                 <div class="form-group">
-                    <label for="nomor_telepon">Nomor Telepon Teknisi</label>
+                    <label for="nomor_telepon">Nomor Telepon</label>
                     <input type="number" required class="form-control form-control-sm @error('nomor_telepon') is-invalid @enderror" id="nomor_telepon" name="nomor_telepon" value="{{ old('nomor_telepon') }}">
                     @error('nomor_telepon') <div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>

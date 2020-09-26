@@ -23,6 +23,7 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Nomor Telepon</th>
+                            <th>Roles</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -36,6 +37,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->nomor_telepon }}</td>
+                            <td>{{ $item->roles }}</td>
                             <td>
                                 <form action="{{ route('delete-user',$item->id) }}" method="post">
                                     @method('DELETE')

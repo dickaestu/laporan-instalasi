@@ -46,4 +46,4 @@ Route::resource('/form-pekerjaan', 'FormPekerjaanController')->middleware('auth'
 Route::get('/pages/export/{id}/export-teknisi', 'FormPekerjaanController@exportTeknisi')->name('pages/export/export-teknisi');
 
 
-Auth::routes();
+Auth::routes(['register' => false]);
