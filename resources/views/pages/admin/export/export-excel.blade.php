@@ -11,19 +11,19 @@
 <table>
   <tr>
     <td></td>
-<td>MITRA : PT LAKSANA BANGUN PRATAMA</td>
+<td>MITRA : GOLEK RAIJO</td>
 <tr>
   <td></td>
 <td>WITEL : TANGERANG </td>
 </tr>
 <tr>
 <td></td>
-<td>PERIODE : AGUSTUS 2020</td>
+<td>PERIODE : </td>
 </tr>
 </table>
 
 
-<table >
+<table class="table-bordered">
   <tr>
     <th rowspan="3">No.</th>
     <th rowspan="3">No Permintaan</th> 
@@ -32,13 +32,14 @@
     <th rowspan="3">Nama</th>
     <th rowspan="3">Aalamat</th>
     <th colspan="2">DATEK</th>
-    <th colspan="6">JENIS PEKERJAAN</th>
+    <th colspan="6" >JENIS PEKERJAAN</th>
     <th rowspan="3">TANGGAL WO</th>
     <th rowspan="3">TANGGAL KRING</th>
     <th colspan="4"> MATERIAL</th>
-    <th rowspan="3">KETERANGAN</th>
+    <th colspan="2">KETERANGAN</th>
+    <th rowspan="1">Nama Teknisi</th>
   </tr>
-  @foreach($items as $item)
+ 
   <tr>
     
     <th rowspan="2">STO</th>
@@ -58,6 +59,8 @@
     <th>INSTALASI PLC</th>
     <th>INSTALASI WIFI EXTENDER</th>
   </tr>
+  
+  @foreach($items as $item)
   <tr>
   <td>{{ $loop->iteration}}</td>
     <td>{{ $item->no_permintaan }}</td>
@@ -81,6 +84,9 @@
     <td> {{$item->soc_ils}}</td>
     <td> {{ $item->psb}}</td>
     <td> {{ $item->tambahan}}</td>
+    <td> {{ $item->user->name}}</td>
+   
+    
   </tr>
   @endforeach
 </table>
